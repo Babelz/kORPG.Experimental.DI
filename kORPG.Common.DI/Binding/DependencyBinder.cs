@@ -9,7 +9,7 @@ namespace kORPG.Common.DI.Binding
     public sealed class DependencyBinder 
     {
         #region Fields
-        private IDependencyActivator activator;
+        private DependencyActivator activator;
 
         private List<IDependencyBinder> binders;
 

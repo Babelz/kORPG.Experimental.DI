@@ -1,17 +1,18 @@
-﻿using System;
+﻿using kORPG.Common.DI.Core;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace kORPG.Common.DI
+namespace kORPG.Common.DI.Dependencies
 {
-    public sealed class ObjectDependency : IDependency
+    public sealed class MappedDependency : IDependency
     {
         #region Fields
         private readonly Typelist typelist;
         private readonly object value;
         #endregion
 
-        public ObjectDependency(object value, Type[] types)
+        public MappedDependency(object value, Type[] types)
         {
             this.value = value ?? throw new ArgumentNullException(nameof(value));
 
@@ -26,5 +27,5 @@ namespace kORPG.Common.DI
 
         public bool ReferenceEquals(object other)
             => ReferenceEquals(value, other);
-    }
+}
 }

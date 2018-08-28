@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace kORPG.Common.DI
+namespace kORPG.Common.DI.Dependencies
 {
     public sealed class ProxyDependency : IDependency
     {
@@ -25,5 +25,5 @@ namespace kORPG.Common.DI
 
         public bool ReferenceEquals(object other) 
             => ReferenceEquals(value, other);
-    }
+}
 }

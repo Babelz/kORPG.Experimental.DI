@@ -4,7 +4,7 @@ using System.Text;
 
 namespace kORPG.Common.DI
 {
-    public interface IDependencyLocator
+    public interface IDependencyInjectionLocator
     {
         IEnumerable<object> All(Predicate<object> predicate);
         IEnumerable<object> All();

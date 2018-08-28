@@ -4,7 +4,7 @@ using System.Text;
 
 namespace kORPG.Common.DI
 {
-    public enum DependencyBinderOptions : byte
+    public enum DependencyInjectionOptions : byte
     {
         None                   = 0,
         ConstructorInitializer = (1 << 0),

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace kORPG.Common.DI
+namespace kORPG.Common.DI.Core
 {
     public sealed class Typelist
     {

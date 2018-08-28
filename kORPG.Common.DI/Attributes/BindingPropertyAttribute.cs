@@ -4,7 +4,7 @@ using System.Text;
 
 namespace kORPG.Common.DI.Attributes
 {
-    [AttributeUsage(AttributeTargets.Property)]
+    [AttributeUsage(AttributeTargets.Property, Inherited = true)]
     public sealed class BindingPropertyAttribute : Attribute
     {
         private BindingPropertyAttribute()

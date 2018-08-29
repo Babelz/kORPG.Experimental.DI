@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace kORPG.Common.DI.Binding.Binders
+namespace kORPG.Common.DI.Binding.Bindings
 {
-    public interface IDependencyBinder
+    public interface IDependencyBinding
     {
         bool Bind(object instance);
     }

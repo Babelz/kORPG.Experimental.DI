@@ -21,12 +21,12 @@ namespace kORPG.Common.DI.Binding.Activators
             if (type == null)
                 throw new ArgumentNullException(nameof(type));
 
-            var constructor = type.GetConstructors()
-                                  .FirstOrDefault(c => c.GetCustomAttribute<BindingConstructorAttribute>() != null);
-
-            if (constructor == null)
+            if (!DependencyBindingUtils.HasBindingConstructor(type))
                 throw new InvalidOperationException($"type {type.Name} does not contain constructor annotated with {nameof(BindingConstructorAttribute)}");
 
+            var constructor = type.GetConstructors()
+                                  .First(c => c.GetCustomAttribute<BindingConstructorAttribute>() != null);
+            
             var parameters = constructor.GetParameters();
             var arguments  = new object[parameters.Length];
 

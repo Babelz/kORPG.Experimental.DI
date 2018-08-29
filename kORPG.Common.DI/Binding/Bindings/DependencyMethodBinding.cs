@@ -5,15 +5,15 @@ using System.Reflection;
 using System.Text;
 using kORPG.Common.DI.Attributes;
 
-namespace kORPG.Common.DI.Binding.Binders
+namespace kORPG.Common.DI.Binding.Bindings
 {
-    public sealed class DependencyMethodBinder : IDependencyBinder
+    public sealed class DependencyMethodBinding : IDependencyBinding
     {
         #region Fields
         private readonly IDependencyInjectionLocator locator;
         #endregion
 
-        public DependencyMethodBinder(IDependencyInjectionLocator locator)
+        public DependencyMethodBinding(IDependencyInjectionLocator locator)
             => this.locator = locator ?? throw new ArgumentNullException(nameof(locator));
 
         private bool CanBindToMethod(MethodInfo method)
@@ -42,13 +42,13 @@ namespace kORPG.Common.DI.Binding.Binders
             if (instance == null)
                 throw new ArgumentNullException(nameof(instance));
 
+            if (!DependencyBindingUtils.HasBindingMethods(instance.GetType()))
+                throw new InvalidOperationException($"type {instance.GetType().Name} does not contain any methods annotated with {nameof(BindingMethodAttribute)}");
+
             var methods = instance.GetType()
                                   .GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
                                   .Where(p => p.CustomAttributes.FirstOrDefault(a => a.AttributeType == typeof(BindingMethodAttribute)) != null)
                                   .ToArray();
-
-            if (methods.Length == 0)
-                throw new InvalidOperationException($"type {instance.GetType().Name} does not contain any methods annotated with {nameof(BindingMethodAttribute)}");
 
             for (var i = 0; i < methods.Length; i++)
                 if (!CanBindToMethod(methods[i])) return false;

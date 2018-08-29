@@ -17,12 +17,13 @@ namespace kORPG.Common.DI.Binding.Activators
             if (type == null)
                 throw new ArgumentNullException(nameof(type));
 
-            var constructor = type.GetType()
-                                  .GetConstructor(Type.EmptyTypes);
-
-            if (constructor == null)
+            if (!DependencyBindingUtils.HasDefaultConstructor(type))
                 throw new InvalidOperationException("type does not have default constructor");
 
+            var constructor = type.GetType()
+                                  .GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+                                  .First(c => c.GetParameters()?.Length == 0);
+            
             instance = constructor.Invoke(null);
 
             return true;

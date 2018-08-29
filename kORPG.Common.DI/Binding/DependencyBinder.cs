@@ -1,5 +1,5 @@
 ﻿using kORPG.Common.DI.Binding.Activators;
-using kORPG.Common.DI.Binding.Binders;
+using kORPG.Common.DI.Binding.Bindings;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,7 +11,7 @@ namespace kORPG.Common.DI.Binding
         #region Fields
         private DependencyActivator activator;
 
-        private List<IDependencyBinder> binders;
+        private List<IDependencyBinding> binders;
 
         private object instance;
         #endregion
@@ -29,14 +29,14 @@ namespace kORPG.Common.DI.Binding
 
             Type = instance.GetType();
 
-            binders = new List<IDependencyBinder>();
+            binders = new List<IDependencyBinding>();
         }
 
         public DependencyBinder(Type type)
         {
             Type = type ?? throw new ArgumentNullException(nameof(type));
 
-            binders = new List<IDependencyBinder>();
+            binders = new List<IDependencyBinding>();
         }
 
         public void BindWith(IDependencyActivator activator)
@@ -47,7 +47,7 @@ namespace kORPG.Common.DI.Binding
             this.activator = activator ?? throw new ArgumentNullException(nameof(activator));
         }
 
-        public void BindWith(IDependencyBinder binder)
+        public void BindWith(IDependencyBinding binder)
             => binders.Add(binder ?? throw new ArgumentNullException(nameof(binder)));
 
         public bool Bind()

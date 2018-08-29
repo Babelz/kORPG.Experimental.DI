@@ -7,7 +7,7 @@ namespace kORPG.Common.DI.Attributes
     [AttributeUsage(AttributeTargets.Constructor)]
     public sealed class BindingConstructorAttribute : Attribute
     {
-        private BindingConstructorAttribute()
+        public BindingConstructorAttribute()
             : base()
         {
         }

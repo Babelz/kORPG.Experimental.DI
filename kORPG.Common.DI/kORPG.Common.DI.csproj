@@ -1,8 +1,68 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7FE5244E-A118-4D73-9575-756D6AAF552D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>kORPG.Common.DI</RootNamespace>
+    <AssemblyName>kORPG.Common.DI</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
-
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\BindingConstructorAttribute.cs" />
+    <Compile Include="Attributes\BindingMethodAttribute.cs" />
+    <Compile Include="Attributes\BindingPropertyAttribute.cs" />
+    <Compile Include="Binding\Activators\DependencyBindingConstructorActivator.cs" />
+    <Compile Include="Binding\Activators\DependencyDefaultConstructorActivator.cs" />
+    <Compile Include="Binding\Activators\IDependencyActivator.cs" />
+    <Compile Include="Binding\Bindings\DependencyMethodBinding.cs" />
+    <Compile Include="Binding\Bindings\DependencyPropertyBinding.cs" />
+    <Compile Include="Binding\Bindings\IDependencyBinding.cs" />
+    <Compile Include="Binding\DependencyBinder.cs" />
+    <Compile Include="Binding\DependencyBindingOptions.cs" />
+    <Compile Include="Binding\DependencyBindingResolver.cs" />
+    <Compile Include="Binding\DependencyBindingUtils.cs" />
+    <Compile Include="Binding\DependencyTypeMapper.cs" />
+    <Compile Include="Binding\Exceptions.cs" />
+    <Compile Include="Dependency.cs" />
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="IDependencyInjectionBinder.cs" />
+    <Compile Include="IDependencyInjectionLocator.cs" />
+    <Compile Include="IKernel.cs" />
+    <Compile Include="Kernel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

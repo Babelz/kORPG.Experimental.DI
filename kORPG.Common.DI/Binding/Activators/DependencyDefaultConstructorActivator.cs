@@ -20,11 +20,15 @@ namespace kORPG.Common.DI.Binding.Activators
             if (!DependencyBindingUtils.HasDefaultConstructor(type))
                 throw new InvalidOperationException("type does not have default constructor");
 
-            var constructor = type.GetType()
-                                  .GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
-                                  .First(c => c.GetParameters()?.Length == 0);
-            
-            instance = constructor.Invoke(null);
+            try
+            {
+                instance = Activator.CreateInstance(type);
+            }
+            catch
+            {
+                throw new DependencyBinderException($"could not create instance of {type.Name} using default parameterless constructor, please check that the " +
+                                                     "type has a public parameterless default constructor available");
+            }
 
             return true;
         }

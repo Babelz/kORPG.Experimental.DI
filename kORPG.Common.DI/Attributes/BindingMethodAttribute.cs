@@ -7,7 +7,7 @@ namespace kORPG.Common.DI.Attributes
     [AttributeUsage(AttributeTargets.Method)]
     public sealed class BindingMethodAttribute : Attribute
     {
-        private BindingMethodAttribute()
+        public BindingMethodAttribute()
             : base()
         {
         }

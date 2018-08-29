@@ -7,7 +7,7 @@ namespace kORPG.Common.DI.Attributes
     [AttributeUsage(AttributeTargets.Property, Inherited = true)]
     public sealed class BindingPropertyAttribute : Attribute
     {
-        private BindingPropertyAttribute()
+        public BindingPropertyAttribute()
             : base()
         {
         }

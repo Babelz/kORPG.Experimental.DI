@@ -21,7 +21,7 @@ namespace kORPG.Common.DI.Binding.Bindings
             if (instance == null)
                 throw new ArgumentNullException(nameof(instance));
 
-            if (!DependencyBindingUtils.HasBindingProperties(instance.GetType())
+            if (!DependencyBindingUtils.HasBindingProperties(instance.GetType()))
                 throw new InvalidOperationException($"type {instance.GetType().Name} does not contain any properties annotated with {nameof(BindingPropertyAttribute)}");
 
             var properties = instance.GetType()

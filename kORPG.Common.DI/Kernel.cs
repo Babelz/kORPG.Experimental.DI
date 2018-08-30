@@ -53,8 +53,11 @@ namespace kORPG.Common.DI
             if (instance == null)
             {
                 if (!resolver.ResolveActivator(type ?? instance?.GetType(), out var activator))
-                    throw new InvalidOperationException($"no activator for type {type.Name} could be created");
-
+                {
+                    throw new DependencyBinderException($"no activator for type {type.Name} could be created, please check that the " +
+                                                         "type has a public parameterless default constructor or binding constructor available");
+                }
+                
                 binder.BindWith(activator);
             }
 
@@ -271,6 +274,12 @@ namespace kORPG.Common.DI
                 throw new DependencyNotFoundException(typeof(T));
 
             return dependency.Cast<T>();
+        }
+
+        public void Clear()
+        {
+            dependencies.Clear();
+            binders.Clear();
         }
     }
 }

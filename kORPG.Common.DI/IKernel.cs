@@ -20,5 +20,7 @@ namespace kORPG.Common.DI
             set;
         }
         #endregion
+
+        void Clear();
     }
 }

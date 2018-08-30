@@ -48,8 +48,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestTypes\BaseCtorPropMethodFooBarImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="KernelTests.cs" />
+    <Compile Include="TestTypes\BaseCtorPropMethodFooBar.cs" />
+    <Compile Include="TestTypes\CtorPropMethodFooBar.cs" />
     <Compile Include="TestTypes\CtroFooBar.cs" />
     <Compile Include="TestTypes\Dep0.cs" />
     <Compile Include="TestTypes\Dep1.cs" />

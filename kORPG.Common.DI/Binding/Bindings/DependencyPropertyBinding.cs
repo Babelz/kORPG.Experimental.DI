@@ -22,11 +22,11 @@ namespace kORPG.Common.DI.Binding.Bindings
                 throw new ArgumentNullException(nameof(instance));
 
             if (!DependencyBindingUtils.HasBindingProperties(instance.GetType()))
-                throw new InvalidOperationException($"type {instance.GetType().Name} does not contain any properties annotated with {nameof(BindingPropertyAttribute)}");
+                throw new DependencyBinderException($"type {instance.GetType().Name} does not contain any properties annotated with {nameof(BindingPropertyAttribute)}");
 
             var properties = instance.GetType()
-                                     .GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                                     .Where(p => p.CustomAttributes.FirstOrDefault(a => a.AttributeType == typeof(BindingPropertyAttribute)) != null)
+                                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                                     .Where(c => c.GetCustomAttribute<BindingPropertyAttribute>() != null)
                                      .ToArray();
 
             var arguments = new object[properties.Length];

@@ -17,11 +17,13 @@ namespace kORPG.Common.DI.Binding
 
             if ((options & DependencyBindingOptions.Classes) == DependencyBindingOptions.Classes && type.IsClass)
             {
-                while (type != null || type != typeof(object))
-                {
-                    types.Add(type);
+                var it = type;
 
-                    type = type.BaseType;
+                while (it != null && it != typeof(object))
+                {
+                    types.Add(it);
+
+                    it = it.BaseType;
                 }
             }
             else if ((options & DependencyBindingOptions.Class) == DependencyBindingOptions.Class && type.IsClass)

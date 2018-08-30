@@ -18,7 +18,7 @@ namespace kORPG.Common.DI.Binding.Activators
                 throw new ArgumentNullException(nameof(type));
 
             if (!DependencyBindingUtils.HasDefaultConstructor(type))
-                throw new InvalidOperationException("type does not have default constructor");
+                throw new DependencyBinderException("type does not have default constructor");
 
             try
             {

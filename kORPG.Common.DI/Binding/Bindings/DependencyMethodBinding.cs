@@ -43,11 +43,11 @@ namespace kORPG.Common.DI.Binding.Bindings
                 throw new ArgumentNullException(nameof(instance));
 
             if (!DependencyBindingUtils.HasBindingMethods(instance.GetType()))
-                throw new InvalidOperationException($"type {instance.GetType().Name} does not contain any methods annotated with {nameof(BindingMethodAttribute)}");
+                throw new DependencyBinderException($"type {instance.GetType().Name} does not contain any methods annotated with {nameof(BindingMethodAttribute)}");
 
             var methods = instance.GetType()
-                                  .GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                                  .Where(p => p.CustomAttributes.FirstOrDefault(a => a.AttributeType == typeof(BindingMethodAttribute)) != null)
+                                  .GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                                  .Where(c => c.GetCustomAttribute<BindingMethodAttribute>() != null)
                                   .ToArray();
 
             for (var i = 0; i < methods.Length; i++)

@@ -20,9 +20,9 @@ namespace kORPG.Common.DI.Binding.Activators
         {
             if (type == null)
                 throw new ArgumentNullException(nameof(type));
-
+           
             if (!DependencyBindingUtils.HasBindingConstructor(type))
-                throw new InvalidOperationException($"type {type.Name} does not contain constructor annotated with {nameof(BindingConstructorAttribute)}");
+                throw new DependencyBinderException($"type {type.Name} does not contain constructor annotated with {nameof(BindingConstructorAttribute)}");
 
             var constructor = type.GetConstructors()
                                   .First(c => c.GetCustomAttribute<BindingConstructorAttribute>() != null);
@@ -41,7 +41,7 @@ namespace kORPG.Common.DI.Binding.Activators
 
             instance = constructor.Invoke(arguments);
 
-            return false;
+            return true;
         }
     }
 }

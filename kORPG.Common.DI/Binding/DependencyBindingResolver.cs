@@ -20,6 +20,11 @@ namespace kORPG.Common.DI.Binding
             if (type == null)
                 throw new ArgumentNullException(nameof(type));
 
+            if (type.IsAbstract)
+                throw new DependencyBinderException($"can't create instance of abstract type {type.Name}");
+            else if (type.IsInterface)
+                throw new DependencyBinderException($"can't create instance of interface type {type.Name}");
+            
             if      (DependencyBindingUtils.HasBindingConstructor(type)) activator = new DependencyBindingConstructorActivator(locator);
             else if (DependencyBindingUtils.HasDefaultConstructor(type)) activator = new DependencyDefaultConstructorActivator();
             else                                                         activator = null;

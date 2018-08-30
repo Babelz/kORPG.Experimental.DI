@@ -10,7 +10,7 @@ namespace kORPG.Common.DI.Binding
         Class                  = (1 << 1),
         Classes                = (1 << 2),
         Interfaces             = (1 << 3),
-        ClassAndInterfaces     = Class | Interfaces,
-        ClassesAndInterfaces   = Class | Interfaces
+        ClassAndInterfaces     = Class   | Interfaces,
+        ClassesAndInterfaces   = Classes | Interfaces
     }
 }

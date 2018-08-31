@@ -252,5 +252,21 @@ namespace kORPG.Common.DI.Tests
             Assert.IsTrue(kernel.Exists<IFoo>());
             Assert.IsTrue(kernel.Exists<IBar>());
         }
+
+        [TestMethod()]
+        public void CantBindToInterfaceTest()
+        {
+            var kernel = new Kernel();
+
+            Assert.ThrowsException<DependencyBinderException>(() => kernel.Bind<IFoo>());
+        }
+
+        [TestMethod()]
+        public void CantBindToAbstractClassTest()
+        {
+            var kernel = new Kernel();
+
+            Assert.ThrowsException<DependencyBinderException>(() => kernel.Bind<BaseCtorPropMethodFooBar>());
+        }
     }
 }

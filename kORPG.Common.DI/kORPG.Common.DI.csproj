@@ -55,7 +55,6 @@
     <Compile Include="Binding\DependencyBindingResolver.cs" />
     <Compile Include="Binding\DependencyBindingUtils.cs" />
     <Compile Include="Binding\DependencyTypeMapper.cs" />
-    <Compile Include="Binding\Exceptions.cs" />
     <Compile Include="Dependency.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="IDependencyInjectionBinder.cs" />
